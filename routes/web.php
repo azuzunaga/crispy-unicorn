@@ -16,5 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/about', function () {
-    return view('about');
+    $users = DB::table('users')->get();
+    // return view('about', compact('users'));
+    return $users;
 });

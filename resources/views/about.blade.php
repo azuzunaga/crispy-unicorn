@@ -5,6 +5,10 @@
     <title></title>
   </head>
   <body>
-    <h1>About us</h1>
+    <ul>
+      @foreach ($users as $user)
+      <li>{{ $user }}</li>
+      @endforeach
+    </ul>
   </body>
 </html>
