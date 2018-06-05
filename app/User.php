@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Color;
+use App\Connection;
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
@@ -9,5 +11,40 @@ class User extends Model
     public function favoriteColor()
     {
         return $this->belongsTo(Color::class, 'fav_color_id');
+    }
+
+    // Connections with users with a bigger userId
+    function biggerConnections()
+    {
+      return $this->belongsToMany('User', 'connections', 'smaller_id', 'bigger_id');
+    }
+
+    // Connections with users with a smaller userId
+    function smallerConnections()
+    {
+      return $this->belongsToMany('User', 'connections', 'bigger_id', 'smaller_id');
+    }
+
+    // accessor allowing you call $user->connections
+    public function getConnectionsAttribute()
+    {
+        if ( ! array_key_exists('connections', $this->relations)) $this->loadConnections();
+
+        return $this->getRelation('connections');
+    }
+
+    protected function loadConnections()
+    {
+        if ( ! array_key_exists('connections', $this->relations))
+        {
+            $connections = $this->mergeConnections();
+
+            $this->setRelation('connections', $connections);
+        }
+    }
+
+    protected function mergeConnections()
+    {
+        return $this->biggerConnections->merge($this->smallerConnections);
     }
 }
