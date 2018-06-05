@@ -15,10 +15,11 @@ class CreateConnectionsTable extends Migration
     {
         Schema::create('connections', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('smaller_id')->unsigned();
+            $table->unsignedInteger('smaller_id');
             $table->foreign('smaller_id')->references('id')->on('users');
-            $table->integer('bigger_id')->unsigned();
+            $table->unsignedInteger('bigger_id');
             $table->foreign('bigger_id')->references('id')->on('users');
+            $table->unique(['smaller_id', 'bigger_id']);
             $table->timestamps();
         });
     }
