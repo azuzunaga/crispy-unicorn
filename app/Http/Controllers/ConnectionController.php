@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Connection;
+use App\Http\Resources\ConnectionCollection;
 use Illuminate\Http\Request;
 
 class ConnectionController extends Controller
@@ -11,43 +14,22 @@ class ConnectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
-    }
+        $result = [];
+        $userConnections = $user->connections;
+        foreach ($userConnections as $connection) {
+            // Swap between big or small user id to pull the opposite as a friend
+            $friend = $user->id === $connection->big->id ? $connection->small : $connection->big;
+            array_push($result, [
+                'connectionId' => $connection->id,
+                'name' => $friend->fullName(),
+                'favoriteColor' => $friend->favoriteColor->name,
+                'favoriteColorCode' => $friend->favoriteColor->code
+            ]);
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return $result;
     }
 
     /**
