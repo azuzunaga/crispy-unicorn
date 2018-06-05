@@ -7,9 +7,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/users', 'UserController')->except([
-  'destroy'
+    'destroy'
 ]);
 
 Route::apiResource('/connections', 'ConnectionController')->only([
-  'destroy'
+    'destroy'
+]);
+
+Route::apiResource('/colors', 'ColorController')->only([
+    'index', 'show'
 ]);
