@@ -42,5 +42,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         config.hostsupdater.aliases = settings['sites'].map { |site| site['map'] }
     end
 
-    config.vm.network "forwarded_port", guest: 4200, host: 4200
+    # config.vm.network "forwarded_port", guest: 4200, host: 4200
 end

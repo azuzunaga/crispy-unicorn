@@ -32,3 +32,16 @@ When creating new connections the smallest user id out of the two users will be 
   * Connect to MySQL `mysql -uhomestead -p`
   * Enter `secret` (Homestead's default MySQL password)
   * Enter command `CREATE DATABASE rainbow`;
+
+## Installing watchman on vagrant box
+```
+# checkout, compile & install
+git clone https://github.com/facebook/watchman.git
+cd watchman/
+git checkout v4.9.0
+sudo apt-get install -y autoconf automake build-essential python-dev libssl-dev libtool pkg-config
+./autogen.sh
+./configure
+make
+sudo make install
+```
