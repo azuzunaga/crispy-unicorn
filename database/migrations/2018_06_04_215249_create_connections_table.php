@@ -16,9 +16,11 @@ class CreateConnectionsTable extends Migration
         Schema::create('connections', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('smaller_id');
-            $table->foreign('smaller_id')->references('id')->on('users');
+            $table->foreign('smaller_id')->references('id')->on('users')
+                  ->onDelete('cascade');
             $table->unsignedInteger('bigger_id');
-            $table->foreign('bigger_id')->references('id')->on('users');
+            $table->foreign('bigger_id')->references('id')->on('users')
+                  ->onDelete('cascade');
             $table->unique(['smaller_id', 'bigger_id']);
             $table->timestamps();
         });
