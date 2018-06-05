@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
+    public function fullName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
     public function favoriteColor()
     {
         return $this->belongsTo(Color::class, 'fav_color_id');
