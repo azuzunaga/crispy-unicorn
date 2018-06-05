@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Color;
+use App\Http\Resources\Color\ColorCollection;
+use App\Http\Resources\Color\ColorResource;
 use Illuminate\Http\Request;
 
 class ColorController extends Controller
@@ -13,18 +16,7 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        return ColorCollection::collection(Color::all());
     }
 
     /**
@@ -33,31 +25,8 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Color $color)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return new ColorResource($color);
     }
 }
