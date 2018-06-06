@@ -1,16 +1,13 @@
 <h4>This is the colors page</h4>
 {{#link-to "/"}}Home{{/link-to}}
 
-<div class="row">
-  <div class="col-xs-12">
-    <div id="color">
-      {{#each color in arrangedContent}}
-        <ul>
-          <li>
-            {{ color.name }}
-          </li>
-        </ul>
-      {{/each}}
-    </div>
-  </div>
+<div>
+  {{#each model as |color|}}
+    <article class="name">
+      <h3>{{color.name}}</h3>
+      <div class="code">
+        <span>Code:</span> {{color.code}}
+      </div>
+    </article>
+  {{/each}}
 </div>
