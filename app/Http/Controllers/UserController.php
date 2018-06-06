@@ -34,17 +34,11 @@ class UserController extends Controller
      * U{{pdate the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Product  $product
+     * @param  \App\Model\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, User $user)
     {
-        $this->ProductUserCheck($product);
-        $request['detail'] = $request->description;
-        unset($request['description']);
-        $product->update($request->all());
-        return response([
-            'data' => new ProductResource($product)
-        ],Response::HTTP_CREATED);
+        //
     }
 }

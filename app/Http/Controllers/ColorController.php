@@ -16,7 +16,9 @@ class ColorController extends Controller
      */
     public function index()
     {
-        return ColorCollection::collection(Color::all());
+        return [
+            'color' => ColorCollection::collection(Color::all())
+        ];
     }
 
     /**
