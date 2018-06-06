@@ -15,6 +15,7 @@ class UserCollection extends Resource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'name' => $this->fullName(),
             'favoriteColor' => $this->favoriteColor->name,
             'favoriteColorCode' => $this->favoriteColor->code,

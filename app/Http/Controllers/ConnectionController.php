@@ -29,7 +29,7 @@ class ConnectionController extends Controller
             ]);
         }
 
-        return $result;
+        return ['connection' => $result];
     }
 
     /**
