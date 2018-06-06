@@ -12,6 +12,8 @@ Built using Laravel PHP and Ember.js
 * Run migrations
 * From host machine navigate to frontend folder and run `ember server --proxy http://rainbowconnection.com`
 
+Additionally, zipped folder of complete project can be downloaded here: 
+
 ### Optional: Installing watchman on vagrant box
 ```
 # checkout, compile & install
