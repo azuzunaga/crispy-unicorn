@@ -1,6 +1,5 @@
-import DS from 'ember-data';
+import RESTAdapter from 'ember-data/adapters/rest';
 
-export default DS.JSONAPIAdapter.extend({
-  namespace: 'api',
-  host: 'rainbowcolors.com'
+export default RESTAdapter.extend({
+  host: 'http://rainbowconnection.com/api'
 });
