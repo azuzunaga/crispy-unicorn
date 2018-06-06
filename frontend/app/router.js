@@ -9,7 +9,9 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('/')
   this.route('colors');
-  this.route('users');
+  this.route('users', function() {
+    this.route('user', { path: '/:user_id' })
+  });
   this.route('connections');
 });
 
