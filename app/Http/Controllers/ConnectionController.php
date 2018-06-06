@@ -16,20 +16,24 @@ class ConnectionController extends Controller
      */
     public function index(User $user)
     {
-        $result = [];
-        $userConnections = $user->connections;
-        foreach ($userConnections as $connection) {
-            // Swap between big or small user id to pull the opposite as a friend
-            $friend = $user->id === $connection->big->id ? $connection->small : $connection->big;
-            array_push($result, [
-                'connectionId' => $connection->id,
-                'name' => $friend->fullName(),
-                'favoriteColor' => $friend->favoriteColor->name,
-                'favoriteColorCode' => $friend->favoriteColor->code
-            ]);
-        }
-
-        return ['connection' => $result];
+        // $result = [];
+        // $userConnections = $user->connections;
+        // foreach ($userConnections as $connection) {
+        //     // Swap between big or small user id to pull the opposite as a friend
+        //     $friend = $user->id === $connection->big->id ? $connection->small : $connection->big;
+        //     array_push($result, [
+        //         'id' => $connection->id,
+        //         // 'user' => $user->id,
+        //         'name' => $friend->fullName(),
+        //         'favoriteColor' => $friend->favoriteColor->name,
+        //         'favoriteColorCode' => $friend->favoriteColor->code
+        //     ]);
+        // }
+        //
+        // return ['connection' => $result];
+        return [
+            'connection' => ConnectionCollection::collection($user->connections)
+        ];
     }
 
     /**

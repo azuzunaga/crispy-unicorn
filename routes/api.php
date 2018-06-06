@@ -10,7 +10,7 @@ Route::apiResource('/users', 'UserController')->only([
     'index', 'show'
 ]);
 
-Route::group(['prefix'=>'users'],function(){
+Route::group(['prefix'=>'user'],function(){
 	Route::apiResource('/{user}/connections','ConnectionController')->only([
         'index', 'destroy'
     ]);

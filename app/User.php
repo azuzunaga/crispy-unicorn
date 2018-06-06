@@ -21,13 +21,13 @@ class User extends Model
     // Connections with users with a bigger userId
     function biggerConnections()
     {
-      return $this->HasMany(Connection::class, 'smaller_id');
+      return $this->hasMany(Connection::class, 'smaller_id');
     }
 
     // Connections with users with a smaller userId
     function smallerConnections()
     {
-      return $this->HasMany(Connection::class, 'bigger_id');
+      return $this->hasMany(Connection::class, 'bigger_id');
     }
 
     // accessor allowing you call $user->connections

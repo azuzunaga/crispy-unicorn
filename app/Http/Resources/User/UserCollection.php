@@ -14,14 +14,18 @@ class UserCollection extends Resource
      */
     public function toArray($request)
     {
+        $url = route('connections.index', $this->id);
+        $url = substr($url, 32);
+
         return [
             'id' => $this->id,
             'name' => $this->fullName(),
             'favoriteColor' => $this->favoriteColor->name,
             'favoriteColorCode' => $this->favoriteColor->code,
-            'href' => [
-                'connections' => route('connections.index', $this->id),
-                'link' => route('users.show', $this->id)
+            // 'connections' => ConnectionCollection::collection($this->connections),
+            'links' => [
+                'connections' => $url,
+                // 'userProfile' => route('users.show', $this->id)
             ]
         ];
     }
